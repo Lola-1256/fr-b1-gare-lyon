@@ -1,0 +1,20 @@
+{
+ "T1-A-PAT": {
+  "id": "T1-A-PAT",
+  "spk": "camille",
+  "fr": "Je voudrais un billet pour Chamonix, s'il vous plaît.",
+  "voice": "fr-FR-DeniseNeural",
+  "rates": {
+   "normal": {
+    "rate": "-8%",
+    "dur": 2.88,
+    "words": 9
+   },
+   "__slow": {
+    "rate": "-22%",
+    "dur": 3.38,
+    "words": 9
+   }
+  }
+ }
+}

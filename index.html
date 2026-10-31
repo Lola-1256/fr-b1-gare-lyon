@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gare de Lyon · 法语 B1 情景对话</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="show-task">
+
+<header id="top">
+  <span id="brand">法语 B1 · 火车站：班次取消</span>
+  <span id="step-label">—</span>
+  <span id="chips">
+    <button class="chip" data-act="remove">REMOVE <b>删除</b></button>
+    <button class="chip" data-act="signal">SIGNAL <b>突出</b></button>
+    <button class="chip" id="btn-info">? 这是什么课</button>
+  </span>
+</header>
+
+<main>
+
+  <!-- 画面层（scene 屏）：背景 + 立绘 + 锚点。全尺寸，不与卡片同屏 -->
+  <section id="hero" class="rm" data-rm-name="画面（图+立绘）">
+    <img class="bg show" data-bg="hall" src="assets/img/bg-hall.png" alt="">
+    <img class="bg" data-bg="guichet" src="assets/img/bg-guichet.png" alt="">
+    <img class="bg" data-bg="platform" src="assets/img/bg-platform.png" alt="">
+    <span class="anchor" data-anchor="board"  style="left:69%; top:26%"></span>
+    <span class="anchor" data-anchor="window" style="left:50%; top:44%"></span>
+    <span class="anchor" data-anchor="train"  style="left:36%; top:50%"></span>
+    <!-- 屏幕上的法语词是 HTML 文字层，不是画在图里的：可被 REMOVE / FADE 控制 -->
+    <span id="stage-word" class="rm" data-rm-name="屏幕上的 Supprimé">SUPPRIMÉ</span>
+
+    <div id="sprite" class="breathe"><img id="imgA" alt=""><img id="imgB" alt=""></div>
+
+    <!-- 铺垫层（可理解性输入）：热点箭头 / 单词卡 / 句式卡。画面与文字必须同屏 -->
+    <div id="hotspots" class="hidden"></div>
+    <div id="word-card" class="hidden"></div>
+    <div id="pattern-panel" class="hidden"></div>
+  </section>
+
+  <!-- 任务层（task 屏）：一次一件事。全尺寸，不与画面同屏 -->
+  <section id="card">
+    <div id="card-eyebrow"></div>
+    <h2 id="card-title"></h2>
+    <p id="card-text"></p>
+    <div id="card-body"></div>
+    <div id="card-actions"></div>
+    <p id="card-tip" class="rm" data-rm-name="每步的提示"></p>
+  </section>
+
+  <!-- DELAY 的元素收进这里 -->
+  <div id="tray" class="hidden"><span>延后区</span><div id="tray-list"></div></div>
+
+</main>
+
+<!-- 听层：法语字幕 + 音频控制。常驻底部，scene 屏与 task 屏共用 -->
+<aside id="subbar">
+  <div id="speaker">Camille</div>
+  <p id="fr" class="kara"></p>
+  <div id="dlg-ctrl">
+    <button id="zh-btn" class="rm" data-rm-name="中文释义">中文释义（先猜）</button>
+    <button id="replay-btn">↻ 重听</button>
+    <button id="slow-btn">🐢 慢速</button>
+    <button id="play-btn" class="hidden">▶ 点这里才有声音</button>
+  </div>
+  <div id="zh" class="hidden"></div>
+  <span id="eq">▮▮▮</span>
+  <p id="audio-note" class="hidden"></p>
+</aside>
+
+<!-- 翻页推进条 -->
+<div id="nav"><button id="nav-btn">下一步 ▸</button></div>
+
+<!-- SIGNAL 引导线 -->
+<svg id="guide"></svg>
+
+<!-- 抽屉：目标卡 / 词汇 / 设计卡 / 迭代卡（一开始不挡路） -->
+<aside id="drawer" class="hidden">
+  <div class="drawer-inner">
+    <button id="drawer-close">✕ 收起</button>
+    <h3>这一课在做什么</h3>
+    <p><b>语言问题</b>：B1 学习者看得懂公告与车票，但在车站窗口这种要即时开口的场合，提取慢、说不出完整句。</p>
+    <p><b>做法</b>：一个连续情境切成 4 段对话。每段只做三件事 —— <b>先猜</b>（预测）→ <b>再说</b>（选一句你要说的话，选择有后果）→ <b>合上再说</b>（复述）。最后撤掉全部对话，只用过去时把整件事讲一遍。</p>
+    <p><b>顶部两个按钮是干什么的</b>：它们不是装饰，是这一课的设计核心 —— <i>REMOVE</i> 让你删掉辅助信息（中文、图、屏幕上的词），看看只靠目标语言还够不够；<i>SIGNAL</i> 把本段的重点表达标成金色，点它会连到画面里对应的东西。<i>SEGMENT</i> 就是"一次只推一段"，<i>FADE</i> 是最后一层层撤掉提示。</p>
+    <h3>这一轮的语言目标</h3>
+    <p>开口说清楚问题并换来方案：<i>je voudrais</i> 开口 · <i>il faut que</i> + subjonctif 说明急迫 · 疑问句确认细节 · 过去时叙事。</p>
+    <div class="pill-list">
+      <span>supprimé / annulé</span><span>un incident technique</span><span>un renseignement</span>
+      <span>un guichet</span><span>échanger un billet</span><span>un supplément</span>
+      <span>une correspondance</span><span>valable</span>
+    </div>
+    <h3>关于素材</h3>
+    <p>插图与音频由 AI 生成，仅作教学演示；法语使用 <i>vous</i> 全程，Camille 为女性。录音只保存在本页，刷新即消失，不上传、不评分。</p>
+    <p>听不到声音时别猜 —— <a href="diag.html" target="_blank" style="color:#B4553F"><b>打开音频自检页</b></a>，它会自动查出卡在哪一环，点「复制诊断结果」发过来即可。</p>
+  </div>
+</aside>
+
+<script src="app.js"></script>
+</body>
+</html>
